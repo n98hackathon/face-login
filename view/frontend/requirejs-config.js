@@ -9,7 +9,7 @@ var config = {
     config: {
         map: {
             '*': {
-                faceapi: 'N98_FaceLogin/js/faceapi'
+                //faceapi: 'N98_FaceLogin/js/faceapi'
             }
         }
     }
