@@ -1,0 +1,77 @@
+/**
+ * @copyright Copyright (c) 2018 netz98 GmbH (http://www.netz98.de)
+ *
+ * @see PROJECT_LICENSE.txt
+ */
+
+//
+//  Face Login
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //
+    //  Custom styles
+    //  ---------------------------------------------
+
+    .account.create {
+
+        .field.snapshot-field {
+            display: none;
+
+            .snapshot-btn {
+                margin-bottom: @indent__base;
+            }
+
+            .snapshot-container {
+                position: relative;
+
+                canvas {
+                    z-index: 10;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile / < 1024px
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+
+    //
+    //  Custom styles
+    //  ---------------------------------------------
+
+
+}
+
+//
+//  > 1024px / Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    //
+    //  Container & Sizes
+    //  ---------------------------------------------
+
+
+}
+
+//
+//  > 1440px / large Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
+    //
+    //
+    //  ---------------------------------------------
+
+
+}
