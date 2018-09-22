@@ -78,7 +78,7 @@ class UpgradeData implements UpgradeDataInterface
                     'type' => 'varchar',
                     'label' => 'Face Login Key',
                     'input' => 'text',
-                    'required' => true,
+                    'required' => false,
                     'visible' => true,
                     'user_defined' => true,
                     'sort_order' => 1000,
