@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright Copyright (c) 1999-2016 netz98 new media GmbH (http://www.netz98.de)
+ *
+ * @see PROJECT_LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="n98_facelogin" frontName="facelogin">
+            <module name="N98_FaceLogin"/>
+        </route>
+    </router>
+</config>
