@@ -179,6 +179,7 @@
                     <div class="snapshot-upload">
                         <input type="file" name="face_image" id="faceImage" title="<?= $block->escapeHtmlAttr(__('Face image')) ?>" class="input-text">
                     </div>
+                    <div id="status"></div>
                     <div class="primary">
                         <a id="takeSnapshot" class="action primary snapshot-btn">
                             <span><?= $block->escapeHtmlAttr(__('Take Snapshot')) ?></span>
@@ -187,6 +188,7 @@
                     <div class="snapshot-container">
                         <video id="webcamVideo" width="420" height="315" controls autoplay></video>
                         <canvas id="snapshot" width="420" height="315"></canvas>
+                        <input id="face_detected" name="face_detected" value="">
                     </div>
                 </div>
             </div>
@@ -194,8 +196,9 @@
             <script>
                 requirejs([
                     'jquery',
+                    'faceapi',
                     'domReady!'
-                ], function ($) {
+                ], function ($, faceapi) {
                     'use strict';
 
                     // Get UserMedia code
@@ -208,6 +211,8 @@
                         ctx = canvas.getContext('2d'),
                         video,
                         webcamStream;
+
+                    var minConfidence = 0.7;
 
                     // Webcam start
                     function startWebcam() {
@@ -246,6 +251,8 @@
                     // Draws current image from the video element into the canvas
                     function snapshot() {
                         ctx.drawImage(video, 0,0, canvas.width, canvas.height);
+
+                        updateResults();
                     }
 
                     // Events
@@ -263,6 +270,30 @@
                     $('#takeSnapshot').on('click', function() {
                         snapshot();
                     });
+
+
+                    async function updateResults() {
+                        var inputImgEl = $('#snapshot').get(0);
+
+                        var input = await faceapi.toNetInput(inputImgEl);
+                        var detections = await faceapi.locateFaces(input, minConfidence);
+
+                        var faceImages = await faceapi.extractFaces(inputImgEl, detections)
+                        $("#status").text("Sorry, didn't see you");
+
+                        faceImages.forEach(canvas => $('#face_detected').val(faceImages[0].toDataURL()))
+                        faceImages.forEach(canvas => $("#status").text("Great, i detected you"))
+                    }
+
+                    async function run() {
+                        await faceapi.loadFaceDetectionModel('models')
+                    }
+
+                    async function fetchImage(uri) {
+                        return (await fetch(uri)).blob()
+                    }
+
+                    run();
                 });
             </script>
 
