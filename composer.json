@@ -1,0 +1,26 @@
+{
+  "name": "n98/hackathon2018.facelogin",
+  "description": "Login via Face Recognition",
+  "license": [
+    "proprietary"
+  ],
+  "require": {
+    "php": "~5.6.0|~7.0.0|~7.1.0",
+    "magento/framework": "100.0.*|~100.1.0|101.0.*"
+  },
+  "type": "magento2-module",
+  "authors": [
+    {
+      "name": "netz98 GmbH",
+      "email": "magento@netz98.de"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "N98\\FaceLogin\\": ""
+    }
+  }
+}
